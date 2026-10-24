@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-vendor-build",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Builds the tree-shaken Three.js and GSAP bundles served from site/vendor.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "gsap": "3.15.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

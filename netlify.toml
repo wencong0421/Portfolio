@@ -1,0 +1,5 @@
+# Netlify builds the V2 (light) theme from site/ on every push to GitHub.
+# Response headers live in site/_headers so they also apply to manual (drag-and-drop) deploys.
+[build]
+  command = "node tools/build-themes.mjs v2"
+  publish = "deploy/v2"

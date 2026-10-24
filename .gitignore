@@ -1,0 +1,16 @@
+# Build output (Netlify rebuilds it)
+deploy/
+
+# Private: CV sources and drafts, certificates, photos and backups stay off GitHub
+tools/cv/
+backup/
+Certifications/
+Ivan_Resume_MY_Draft.pdf
+My Potrait.jpeg
+MOTION-SYSTEM.md
+tests/private-terms.json
+
+# Local tooling
+.claude/
+node_modules/
+.DS_Store

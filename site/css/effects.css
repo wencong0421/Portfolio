@@ -1,0 +1,440 @@
+/* =====================================================================================
+   Motion system styles: particle background, scroll showcase, progress rail,
+   micro-interactions and the contact form. Loaded after styles.css.
+   ===================================================================================== */
+
+/* Typed custom properties, so GSAP and the springs can animate them smoothly. */
+@property --fx-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --sx { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --sy { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --ss { syntax: "<number>"; inherits: false; initial-value: 1; }
+@property --sry { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --cp { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+@property --cl { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+@property --cr { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+@property --rad { syntax: "<length>"; inherits: false; initial-value: 18px; }
+@property --p { syntax: "<number>"; inherits: false; initial-value: 1; }
+
+:root {
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* GSAP drives scrolling once the motion system is active. */
+html.js { scroll-behavior: auto; }
+
+/* -------------------------------------------------------------------------------------
+   1. Background layers
+   ------------------------------------------------------------------------------------- */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -2;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.bg-canvas.is-ready { opacity: 1; }
+.bg-canvas.is-off { opacity: 0; }
+
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 35%, transparent 40%, rgb(var(--bg-rgb) / 0.6) 100%),
+    linear-gradient(180deg, rgb(var(--bg-rgb) / 0) 60%, rgb(var(--bg-rgb) / 0.45));
+}
+
+.fx-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 70;
+  pointer-events: none;
+}
+
+/* Particle mode switch */
+.fx-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 45;
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgb(var(--bg-rgb) / 0.78);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.fx-toggle[hidden] { display: none; }
+/* Keep the footer text clear of the floating switch. */
+.fx-ready .footer { padding-bottom: 76px; }
+.fx-toggle__label {
+  align-self: center;
+  padding: 0 8px 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.fx-toggle button {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.fx-toggle button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+
+/* -------------------------------------------------------------------------------------
+   2. Scroll showcase
+   ------------------------------------------------------------------------------------- */
+
+/* Hidden until the showcase reveals them. Without JS (or if it fails) the `js` class is absent. */
+.js .reveal,
+.js [data-sc] { opacity: 0; }
+
+/* Scroll-animated elements are moved through custom properties (see showcase.js). */
+.sv {
+  transform: perspective(1200px) translate3d(var(--sx), var(--sy), 0) rotateY(var(--sry)) scale(var(--ss));
+  clip-path: inset(var(--cp) var(--cr) var(--cp) var(--cl) round var(--rad));
+}
+.sv.sv-done { transform: none; clip-path: none; }
+.degree.sv { --rad: 24px; }
+
+/* Timeline progress line */
+.journey::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 12px rgb(var(--accent-rgb) / 0.6);
+  transform: scaleX(var(--p));
+  transform-origin: left center;
+}
+.js .journey::before { opacity: 0.25; }
+.journey li::before { transition: background-color 0.4s ease, transform 0.6s var(--ease-spring), box-shadow 0.4s ease; }
+.js .journey li:not(.is-on) time { color: var(--muted); }
+.journey li.is-on::before {
+  background: var(--accent);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 6px rgb(var(--accent-rgb) / 0.18);
+}
+.journey time { transition: color 0.4s ease; }
+
+@media (max-width: 900px) {
+  .journey::after {
+    left: 7px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    transform: scaleY(var(--p));
+    transform-origin: center top;
+  }
+}
+
+/* Project numerals stay outlined; the result line is revealed by a wipe. */
+.project__result { will-change: clip-path; }
+
+/* -------------------------------------------------------------------------------------
+   3. Progress rail
+   ------------------------------------------------------------------------------------- */
+.rail {
+  position: fixed;
+  left: clamp(14px, 2vw, 32px);
+  top: 50%;
+  translate: 0 -50%;
+  width: 40px;
+  height: min(62vh, 520px);
+  z-index: 40;
+  display: none;
+}
+.rail[hidden] { display: none !important; }
+.rail__svg { position: absolute; inset: 0; width: 40px; height: 100%; overflow: visible; }
+.rail__track { stroke: var(--line); stroke-width: 2; fill: none; }
+.rail__fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgb(var(--accent-rgb) / 0.7));
+}
+.rail__drop { fill: var(--accent); filter: drop-shadow(0 0 8px rgb(var(--accent-rgb) / 0.9)); }
+
+.rail__list { position: absolute; inset: 0; }
+.rail__item { position: absolute; left: 0; top: calc(var(--y) * 100%); translate: 0 -50%; }
+.rail__node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 6px 0 6px 6px;
+}
+.rail__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--line-strong);
+  transition: transform 0.6s var(--ease-spring), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.4s ease;
+}
+.rail__item.is-passed .rail__dot { border-color: var(--accent); background: var(--accent); transform: scale(0.7); }
+.rail__item.is-active .rail__dot {
+  border-color: var(--accent);
+  background: var(--bg);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 5px rgb(var(--accent-rgb) / 0.2), 0 0 18px rgb(var(--accent-rgb) / 0.6);
+}
+.rail__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgb(var(--bg-rgb) / 0.85);
+  border: 1px solid var(--border);
+  opacity: 0;
+  translate: -8px 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, translate 0.5s var(--ease-spring), color 0.3s ease;
+}
+.rail__node:hover .rail__label,
+.rail__node:focus-visible .rail__label { opacity: 1; translate: 0 0; color: var(--text); }
+.rail__node:hover .rail__dot { transform: scale(1.35); border-color: var(--accent); }
+.rail__item.is-active .rail__label { color: var(--accent); }
+
+@media (min-width: 1200px) {
+  .rail { display: block; }
+}
+@media (min-width: 1480px) {
+  .rail__item.is-active .rail__label { opacity: 1; translate: 0 0; }
+}
+
+/* Slim top progress bar for screens without the rail */
+.progress-top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nav-h);
+  height: 3px;
+  z-index: 49;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+  box-shadow: 0 0 10px rgb(var(--accent-rgb) / 0.6);
+}
+@media (min-width: 1200px) {
+  .progress-top { display: none; }
+}
+
+/* -------------------------------------------------------------------------------------
+   4. Micro-interactions
+   ------------------------------------------------------------------------------------- */
+
+/* Spring values arrive as --fx-x / --fx-y / --fx-s and drive the independent transform
+   properties, which compose with any scroll-driven `transform`. */
+.fx {
+  translate: var(--fx-x, 0px) var(--fx-y, 0px);
+  scale: var(--fx-s, 1);
+  isolation: isolate;
+}
+.fx.is-fx-active { will-change: translate, scale; }
+.fx-ring,
+.fx-glow { position: relative; }
+
+/* Morphing gradient border: a rotating conic gradient masked to a ring that thickens on hover. */
+.fx-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(from var(--fx-angle), var(--accent), var(--accent-2), var(--accent-3), var(--accent-4), var(--accent));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  animation: fx-spin 3.6s linear infinite paused, fx-hue 9s linear infinite paused;
+  transition: opacity 0.4s ease, padding 0.5s var(--ease-spring);
+}
+.fx-ring:hover::before,
+.fx-ring:focus-visible::before,
+.fx-ring:focus-within::before {
+  opacity: 1;
+  padding: 2px;
+  animation-play-state: running;
+}
+@keyframes fx-spin { to { --fx-angle: 360deg; } }
+@keyframes fx-hue { 50% { filter: hue-rotate(40deg) saturate(1.3); } }
+
+/* Cursor-following spotlight that sits above the background but below the content. */
+.fx-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(240px circle at var(--gx, 50%) var(--gy, 50%), rgb(var(--accent-rgb) / 0.18), rgb(var(--accent-3-rgb) / 0.1) 45%, transparent 72%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.fx-glow:hover::after,
+.fx-glow:focus-within::after { opacity: 1; }
+
+/* Magnetic buttons glow while held. */
+.fx--button.is-fx-active,
+.fx--icon.is-fx-active { box-shadow: 0 0 0 1px rgb(var(--accent-rgb) / 0.35), 0 10px 30px -8px rgb(var(--accent-rgb) / 0.45); }
+
+/* Cards: a soft lift shadow instead of the old CSS transform hover. */
+.fx--card { transition: border-color 0.3s ease, box-shadow 0.4s ease; }
+.fx--card.is-fx-active { box-shadow: 0 24px 60px -24px rgb(var(--shadow-rgb) / 0.7), 0 0 0 1px rgb(var(--accent-rgb) / 0.18); }
+
+/* Morphing underline for nav links (desktop; the mobile menu keeps its row separators) */
+@media (min-width: 761px) {
+.nav__links a { position: relative; border-bottom-color: transparent !important; }
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.55s var(--ease-expo);
+}
+.nav__links a:hover::after,
+.nav__links a.active::after { transform: scaleX(1); transform-origin: left center; }
+}
+
+/* -------------------------------------------------------------------------------------
+   5. Contact form
+   ------------------------------------------------------------------------------------- */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.contact__grid .contact__list { grid-template-columns: 1fr; }
+
+.cform { display: grid; gap: 6px; }
+.cform__hp { position: absolute; left: -9999px; }
+.cform__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.field {
+  position: relative;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.field:focus-within { border-color: transparent; background: var(--surface-strong); }
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  padding: 24px 16px 10px;
+  border-radius: inherit;
+}
+.field textarea { min-height: 150px; resize: vertical; }
+.field label {
+  position: absolute;
+  left: 16px;
+  top: 17px;
+  font-size: 15px;
+  color: var(--muted);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.45s var(--ease-spring), color 0.25s ease;
+}
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label {
+  transform: translateY(-10px) scale(0.76);
+  color: var(--accent);
+}
+.field.is-invalid { border-color: var(--danger); }
+.field.is-invalid label { color: var(--danger); }
+.field__err { min-height: 20px; margin: 4px 4px 6px; font-size: 12.5px; color: var(--danger); }
+
+.cform__actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+.cform__submit { cursor: pointer; font-family: inherit; background: transparent; }
+.cform__submit:disabled { cursor: progress; opacity: 0.75; }
+.cform.is-sending .cform__label::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  vertical-align: -1px;
+  animation: cform-spin 0.7s linear infinite;
+}
+@keyframes cform-spin { to { transform: rotate(360deg); } }
+.cform__status { font-size: 14px; color: var(--muted); }
+.cform__status[data-tone="success"] { color: var(--success); }
+.cform__status[data-tone="error"] { color: var(--danger); }
+.cform__status a { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .contact__grid { grid-template-columns: 1fr; }
+}
+/* Keep the three certificate stats on one row until phone widths. */
+@media (min-width: 561px) and (max-width: 900px) {
+  .stats.stats--3 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .cform__row { grid-template-columns: 1fr; }
+  .fx-toggle__label { display: none; }
+}
+
+/* -------------------------------------------------------------------------------------
+   6. Reduced motion: everything visible, nothing moving
+   ------------------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js [data-sc] { opacity: 1; }
+  .sv { transform: none; clip-path: none; }
+  .fx-ring::before { animation: none; }
+  .field label { transition: none; }
+}

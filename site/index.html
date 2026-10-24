@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en" data-theme="v2">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Theme: V1 (dark) or V2 (light). ?theme=v1 / ?theme=v2 previews either without redeploying.
+    (function () {
+      var root = document.documentElement;
+      var requested = new URLSearchParams(location.search).get("theme");
+      if (requested === "v1" || requested === "v2") root.setAttribute("data-theme", requested);
+      document.addEventListener("DOMContentLoaded", function () {
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", root.getAttribute("data-theme") === "v2" ? "#fbfbfd" : "#030320");
+      });
+    })();
+  </script>
+  <title>Wong Man Chong Ivan (Ivan Wong) | Business Analyst Portfolio</title>
+  <meta name="description" content="Wong Man Chong Ivan, Business Analyst specialising in Power BI, Azure Synapse data engineering and cloud automation. Based in Johor Bahru, Malaysia.">
+  <meta name="theme-color" content="#fbfbfd">
+  <meta property="og:title" content="Wong Man Chong Ivan (Ivan Wong) | Business Analyst Portfolio">
+  <meta property="og:description" content="Power BI, Azure Synapse and automation. I turn messy data into platforms people trust.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wongmanchongivan.netlify.app/">
+  <meta property="og:image" content="https://wongmanchongivan.netlify.app/assets/ivan.jpg">
+  <meta property="og:site_name" content="Wong Man Chong Ivan">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://wongmanchongivan.netlify.app/">
+  <meta name="google-site-verification" content="Mv7_n7jJKVAWGDypfGIAwBOcCtQIrQA3Q10QEt_796o">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Wong Man Chong Ivan",
+    "alternateName": "Ivan Wong",
+    "jobTitle": "Business Analyst",
+    "url": "https://wongmanchongivan.netlify.app/",
+    "image": "https://wongmanchongivan.netlify.app/assets/ivan.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Johor Bahru", "addressCountry": "MY" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Sunway University" },
+      { "@type": "CollegeOrUniversity", "name": "Lancaster University" }
+    ],
+    "knowsAbout": ["Power BI", "DAX", "Azure Synapse Analytics", "SQL", "Python", "Data engineering", "Business analysis"],
+    "sameAs": ["https://www.linkedin.com/in/wongmanchongivan/"]
+  }
+  </script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030320'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%23f5b82e'%3EIW%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="modulepreload" href="vendor/gsap.min.js">
+  <link rel="modulepreload" href="vendor/three.min.js">
+  <script>
+    // Hide reveal targets only when JS runs. If the motion system hasn't started within a few
+    // seconds (blocked script, old browser), drop the class so every section is visible.
+    document.documentElement.classList.add("js");
+    setTimeout(function () {
+      if (!window.__portfolioReady) document.documentElement.classList.remove("js");
+    }, 4000);
+  </script>
+</head>
+<body>
+  <a class="skip" href="#about">Skip to content</a>
+
+  <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="bg-vignette" aria-hidden="true"></div>
+  <canvas class="fx-canvas" id="fxCanvas" aria-hidden="true"></canvas>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+  <nav class="rail" id="rail" aria-label="Page sections" hidden></nav>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#home" aria-label="Ivan Wong, home">IW</a>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <div class="hero__text">
+        <p class="eyebrow">Business Analyst Portfolio</p>
+        <p class="hero__tag">I turn messy data into platforms people trust.</p>
+        <h1 class="hero__name" aria-label="Wong Man Chong Ivan">
+          <span>WONG MAN</span>
+          <span>CHONG</span>
+          <span class="gold">IVAN</span>
+        </h1>
+        <div class="hero__cta">
+          <a class="btn btn--outline" href="#projects">Projects</a>
+          <a class="btn btn--gold" href="assets/Ivan_Wong_Resume.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <div class="hero__photo">
+        <div class="frame">
+          <img src="assets/ivan.jpg" alt="Portrait of Wong Man Chong Ivan (Ivan Wong)" width="900" height="1125" fetchpriority="high">
+        </div>
+        <span class="chip chip--a">Power BI</span>
+        <span class="chip chip--b">Azure Synapse</span>
+        <span class="chip chip--c">Python</span>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" aria-label="In short">
+      <p class="statement__text">
+        I'm a Business Analyst who <span class="gold">owns the data platform end to end</span>:
+        Power BI, Azure Synapse and every pipeline in between. When production breaks, I find out why,
+        fix it properly, and <span class="gold">automate the manual work around it.</span>
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h2 class="label reveal"><span class="gold">About</span> Me</h2>
+      <div class="about reveal">
+        <h3 class="about__hello">Hello,<br>I'm <span class="gold">Ivan</span>!</h3>
+        <div class="about__body">
+          <p>
+            <b class="gold">Business Analyst</b> who works like a <b class="gold">data engineer</b>.
+            I'm the first in-house BA and sole owner of the <b class="gold">Power BI</b> and
+            <b class="gold">Microsoft Azure</b> data platform at a multi-country F&amp;B retail group, from data
+            ingestion and SQL warehousing to the reports leadership reviews every morning.
+          </p>
+          <p>
+            I'm happiest when something is broken in production and nobody knows why. I've traced a silent
+            six-week pipeline failure, rebuilt authentication after a Microsoft retirement took down a
+            forecast system, and reconciled a <b class="gold">~2.5% revenue gap</b> between Power BI and the
+            point-of-sale record. I also automate the manual work around it with SQL, DAX, Python and Power Automate.
+          </p>
+          <p>
+            I graduated with a dual-award Business Analytics degree (Second Class Honours, Division One) from
+            Sunway and Lancaster University. What I care about most is data people can trust, and the engineering that keeps it that way.
+          </p>
+          <div class="about__actions">
+            <a class="icon-btn" href="https://www.linkedin.com/in/wongmanchongivan/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://wa.me/60163467606" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88zm8.41-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.05 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41z"/></svg>
+            </a>
+            <a class="icon-btn" href="mailto:wencong0421@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.1.5L12 12.2 19.9 6H4.1zM20 7.9l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.9V18h16V7.9z"/></svg>
+            </a>
+            <a class="btn btn--outline" href="#projects">Projects</a>
+            <a class="btn btn--gold" href="assets/Ivan_Wong_Resume.pdf" download>Download CV</a>
+          </div>
+        </div>
+      </div>
+
+      <ul class="stats reveal" aria-label="Impact at a glance">
+        <li><strong>~2.5%</strong><span>revenue gap found and reconciled</span></li>
+        <li><strong>25+</strong><span>outlets on one governed model</span></li>
+        <li><strong>~70%</strong><span>planned cut in monthly cloud cost</span></li>
+        <li><strong>72 &rarr; 1</strong><span>Excel files into one dataset</span></li>
+      </ul>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <h2 class="label reveal"><span class="gold">Technical</span> Skills</h2>
+      <div class="skills">
+        <article class="skill reveal">
+          <h3>Cloud &amp; Data Platform</h3>
+          <ul class="tags">
+            <li>Azure Synapse Analytics</li><li>Azure Functions</li><li>ADLS Gen2</li><li>Microsoft Entra ID</li>
+            <li>Azure Monitor</li><li>Azure DevOps</li><li>Azure Cloud Shell</li><li>Git</li>
+          </ul>
+        </article>
+        <article class="skill reveal">
+          <h3>Business Intelligence</h3>
+          <ul class="tags">
+            <li>Power BI Service &amp; Desktop</li><li>DAX</li><li>Power Query / M</li><li>Row-Level Security</li>
+            <li>Data Modeling</li><li>Tableau</li>
+          </ul>
+        </article>
+        <article class="skill reveal">
+          <h3>Programming &amp; Automation</h3>
+          <ul class="tags">
+            <li>SQL / T-SQL</li><li>Python (Pandas, openpyxl)</li><li>R</li><li>Google Colab</li>
+            <li>Excel (VBA, formula engineering)</li><li>MySQL</li><li>HTML / CSS / JavaScript</li><li>PHP</li>
+          </ul>
+        </article>
+        <article class="skill reveal">
+          <h3>AI &amp; Automation</h3>
+          <ul class="tags">
+            <li>Claude API / agentic architecture</li><li>Custom GPT agents</li><li>AI Builder (OCR)</li>
+            <li>Prompt engineering</li><li>Power Automate</li>
+          </ul>
+        </article>
+        <article class="skill reveal">
+          <h3>Collaboration &amp; Governance</h3>
+          <ul class="tags">
+            <li>SharePoint</li><li>Microsoft Graph API</li><li>Microsoft Teams</li><li>Power Apps</li>
+            <li>Power Pages</li><li>Sage X3 ERP</li><li>Data governance &amp; documentation</li><li>Process improvement</li>
+          </ul>
+        </article>
+        <article class="skill reveal">
+          <h3>Methods</h3>
+          <ul class="tags">
+            <li>Statistical analysis</li><li>Machine learning</li><li>Data transformation</li><li>Requirements (BRDs)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- BACKGROUND -->
+    <section class="section" id="background">
+      <h2 class="label reveal"><span class="gold">Education</span> &amp; Experience Background</h2>
+
+      <ol class="journey" aria-label="Milestones">
+        <li><time>Mar 2022</time><span>Started Diploma in Business Administration</span></li>
+        <li><time>Apr 2024</time><span>Moved into the Sunway × Lancaster dual-award degree</span></li>
+        <li><time>Sep 2024</time><span>Dean's List</span></li>
+        <li><time>Jan 2026</time><span>First technical BA role, Rimbun Capital</span></li>
+        <li><time>Apr 2026</time><span>Completed degree, became Lavender's first in-house BA</span></li>
+        <li><time>Jun 2026</time><span>Degree conferred: Second Class Honours (Division One)</span></li>
+        <li><time>Jul 2026</time><span>Part-time outlet auditing for a ground-level view of operations (to Oct)</span></li>
+        <li><time>Sep 2026</time><span>Earned Microsoft Business Analyst and Google BI certificates</span></li>
+        <li><time>Oct 2026</time><span>Built loyalty analytics end to end and led an Azure cost review</span></li>
+      </ol>
+
+      <div class="bg">
+        <div class="bg__col">
+          <h3 class="bg__title reveal">Experience</h3>
+
+          <article class="card" data-sc>
+            <header>
+              <div class="card__mark">LC</div>
+              <div>
+                <h4>Lavender Confectionery &amp; Bakery</h4>
+                <p class="role">Business Analyst <small>· Apr 2026 – Present · Johor Bahru</small></p>
+              </div>
+            </header>
+            <ul>
+              <li>Sole in-house owner of the data platform since the original vendor's exit: Power BI semantic models and the Azure stack behind them (Functions, ADLS Gen2, Synapse, 20+ daily pipelines), with leadership reporting for Malaysia and Singapore outlets ready before working hours.</li>
+              <li>Fixed production failures: a 3.5-week forecast outage (moved to certificate-based Entra ID auth), a 6-week silent pipeline failure, and recurring API rate-limit failures; set up the platform's first version control.</li>
+              <li>Reconciled a ~2.5% revenue gap against the POS system of record and introduced a governed category-mapping standard.</li>
+              <li>Built governed Power BI reporting for 25+ outlets with TREATAS-based filtering and Row-Level Security; replaced an 863-error Excel report with an auto-refreshing dashboard.</li>
+              <li>Automated manual work with Python pipelines and Power Automate flows (e-invoice intake, BA request ticketing), and built a loyalty analytics capability from scratch.</li>
+              <li>Led an Azure cost review with a phased plan to cut monthly cost by ~70%.</li>
+              <li>Built a custom, read-only local MCP server over the POS API so sales and stock questions can be analysed in plain language, and piloted MCP querying of the Power BI model.</li>
+              <li>Briefed the CEO on governance for agentic AI, and led colleagues in adopting AI tooling (MCP servers, connectors, plugins), including setting it up on their laptops.</li>
+            </ul>
+          </article>
+
+          <article class="card" data-sc>
+            <header>
+              <div class="card__mark">LC</div>
+              <div>
+                <h4>Lavender Confectionery &amp; Bakery</h4>
+                <p class="role">Outlet Retail Auditor (Part-time) <small>· Jul – Oct 2026 · Johor Bahru region</small></p>
+              </div>
+            </header>
+            <ul>
+              <li>Audited outlets on a monthly cycle for SOP compliance, cash handling, sales transactions, petty cash and stock control.</li>
+              <li>Took over full regional coverage after a colleague's resignation, keeping every outlet on its monthly cycle.</li>
+              <li>Flagged stock and cash-control variances for reconciliation; documented every audit with photo evidence.</li>
+            </ul>
+          </article>
+
+          <article class="card" data-sc>
+            <header>
+              <div class="card__mark">RC</div>
+              <div>
+                <h4>Rimbun Capital</h4>
+                <p class="role">Technical Business Analyst (Intern) <small>· Jan – Mar 2026 · Kuala Lumpur</small></p>
+              </div>
+            </header>
+            <ul>
+              <li>Led development of an Asset Portfolio System, designing the Dataverse backend schema.</li>
+              <li>Acted as liaison between senior stakeholders and the tech team, turning needs into BRDs.</li>
+              <li>Built Power BI dashboards for asset valuation, status and location.</li>
+              <li>Prototyped a GenAI legal assistant and an OCR pipeline (AI Builder + Power Automate) for SSM filings.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="bg__col">
+          <h3 class="bg__title reveal">Education</h3>
+
+          <article class="card" data-sc>
+            <header>
+              <div class="card__mark">SU</div>
+              <div>
+                <h4>Sunway University &amp; Lancaster University</h4>
+                <p class="role">Bachelor of Business Analytics (Honours), Dual Award <small>· Apr 2024 – Apr 2026</small></p>
+              </div>
+            </header>
+            <ul>
+              <li>Second Class Honours (Division One), conferred 8 June 2026</li>
+              <li>CGPA 3.21 / 4.00</li>
+              <li>Dean's List, September 2024 semester</li>
+              <li>Final year project: Alford, a web-based Power BI reporting system. I built the web app and its Netlify deployment, and co-developed the Power BI reports.</li>
+            </ul>
+          </article>
+
+          <article class="card" data-sc>
+            <header>
+              <div class="card__mark">SC</div>
+              <div>
+                <h4>Sunway College Johor Bahru</h4>
+                <p class="role">Diploma in Business Administration <small>· Mar 2022 – Mar 2024</small></p>
+              </div>
+            </header>
+            <ul>
+              <li>CGPA 3.00 / 4.00</li>
+            </ul>
+          </article>
+
+          <h3 class="bg__title bg__title--sub reveal">Languages</h3>
+          <ul class="tags reveal">
+            <li>English <em>Proficient</em></li>
+            <li>Mandarin <em>Native / bilingual</em></li>
+            <li>Cantonese <em>Native / bilingual</em></li>
+            <li>Malay <em>Proficient</em></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <h2 class="label reveal"><span class="gold">Notable</span> Projects</h2>
+      <div class="projects">
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="recovery" aria-hidden="true"></div>
+          <span class="project__no">01</span>
+          <h3>Enterprise Data Platform Recovery</h3>
+          <p>
+            The automated weekly forecast pipeline, used by Operations, Production and Purchasing, went down for
+            about 3.5 weeks after Microsoft retired a legacy SharePoint authentication method. I root-caused it,
+            migrated to certificate-based Microsoft Entra ID authentication and redeployed the Azure Functions myself via Cloud Shell.
+          </p>
+          <p class="project__result">Result: automated operations restored after weeks of manual fallback.</p>
+          <ul class="tags"><li>Azure Functions</li><li>Entra ID</li><li>SharePoint</li><li>Cloud Shell</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="pipeline" aria-hidden="true"></div>
+          <span class="project__no">02</span>
+          <h3>Silent Pipeline Failure and Category Repair</h3>
+          <p>
+            A Synapse pipeline had failed silently for six weeks, corrupting product-category data across the
+            company. I isolated the fix on its own Git branch, validated it through PR review, then released it to production.
+          </p>
+          <p class="project__result">Result: data integrity restored across the full retail product catalog.</p>
+          <ul class="tags"><li>Azure Synapse</li><li>T-SQL</li><li>Git</li><li>Azure DevOps</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="reconcile" aria-hidden="true"></div>
+          <span class="project__no">03</span>
+          <h3>Revenue Reconciliation: Power BI vs POS</h3>
+          <p>
+            Power BI was under-reporting revenue by about 2.5% against the point-of-sale system of record. I traced the
+            gap to hard-coded category exclusions in a SQL script and introduced a governed category-mapping standard,
+            plus a bill-and-item-level method for checking any future discrepancy.
+          </p>
+          <p class="project__result">Result: numbers reconciled, with a standard that stops the gap returning.</p>
+          <ul class="tags"><li>Power BI</li><li>Azure SQL</li><li>Data governance</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="rls" aria-hidden="true"></div>
+          <span class="project__no">04</span>
+          <h3>Multi-Branch DAX and Row-Level Security</h3>
+          <p>
+            Built disconnected calculated tables and TREATAS-based cross-domain slicer logic so branch filtering and
+            RLS behave consistently across 25+ branches, even where fact and dimension coverage didn't match.
+          </p>
+          <p class="project__result">Result: one governed model, extended to a newly onboarded outlet.</p>
+          <ul class="tags"><li>DAX</li><li>TREATAS</li><li>RLS</li><li>Data modeling</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="automation" aria-hidden="true"></div>
+          <span class="project__no">05</span>
+          <h3>From Manual Reporting to Automation</h3>
+          <p>
+            A Python and Google Colab pipeline consolidated 72 historical forecast files (2024–2026, four formats)
+            into one governed dataset for Synapse and Power BI. A manual Excel sales report with 863 cached
+            formula errors became an auto-refreshing dashboard, backed by a 53-sheet data dictionary of 45+ pipelines and 49 SQL tables.
+          </p>
+          <p class="project__result">Result: a fully manual quarterly workflow eliminated, and the platform documented from scratch.</p>
+          <ul class="tags"><li>Python</li><li>Pandas</li><li>Power BI</li><li>Documentation</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="ocr" aria-hidden="true"></div>
+          <span class="project__no">06</span>
+          <h3>Asset Portfolio System and GenAI Tools</h3>
+          <p>
+            At Rimbun Capital I designed the Dataverse schema for a central tracker of high-value assets and built Power BI
+            dashboards on top. I also prototyped a ChatGPT Enterprise legal assistant for Corporate Recovery documents and
+            an OCR pipeline that pulls balance-sheet figures out of SSM PDF filings.
+          </p>
+          <p class="project__result">Result: management can spot underperforming assets; less manual research and data entry.</p>
+          <ul class="tags"><li>Dataverse</li><li>Power BI</li><li>AI Builder</li><li>Power Automate</li><li>BRDs</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="loyalty" aria-hidden="true"></div>
+          <span class="project__no">07</span>
+          <h3>Loyalty Analytics, Built From Scratch</h3>
+          <p>
+            Marketing had membership data locked in a loyalty platform with no reporting. I built the whole path:
+            API extraction on Azure Functions (Flex Consumption) with Key Vault and managed identity, ADLS and Synapse
+            serverless SQL, a Power BI semantic model and an 8-page dashboard, kept separate from the daily sales pipeline.
+          </p>
+          <p class="project__result">Result: member, tier and fraud-control insight refreshed every morning, after validating join keys against POS data.</p>
+          <ul class="tags"><li>Azure Functions</li><li>Synapse serverless</li><li>Key Vault</li><li>Power BI</li><li>Python</li></ul>
+        </article>
+
+        <article class="project" data-sc>
+          <div class="project__viz" data-viz="cost" aria-hidden="true"></div>
+          <span class="project__no">08</span>
+          <h3>Azure Cost Review</h3>
+          <p>
+            With the vendor gone, nobody was watching cloud spend. I reviewed every resource, retired an idle
+            machine-learning workspace and unused pipelines, and planned SQL pool schedule and Function App changes,
+            holding anything cost-impacting until it was formally approved.
+          </p>
+          <p class="project__result">Result: a phased plan to cut monthly platform cost by about 70%.</p>
+          <ul class="tags"><li>Azure</li><li>Synapse</li><li>Cost governance</li><li>Change control</li></ul>
+        </article>
+
+        <article class="project project--wide" data-sc>
+          <div class="project__viz" data-viz="webapp" aria-hidden="true"></div>
+          <span class="project__no">09</span>
+          <h3>Alford: Web-Based Power BI Reporting System (Final Year Project)</h3>
+          <p>
+            An automated reporting system that brings web-based data into Power BI. I built the full web application
+            (HTML, CSS, JavaScript) and deployed it on Netlify myself, and co-developed the Power BI reports with a teammate.
+            It's also why this portfolio is hosted the same way.
+          </p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Power BI</li><li>Netlify</li></ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section class="section" id="certificates">
+      <h2 class="label reveal"><span class="gold">Certificates</span> &amp; Learning</h2>
+      <p class="certs__intro reveal">
+        Ordered by priority: my degree first, then the professional certificates, then the courses closest to my
+        Power BI and Azure work, followed by business analysis, delivery and adjacent skills. Click any certificate to enlarge it.
+      </p>
+
+      <ul class="stats stats--3 reveal" aria-label="Credentials at a glance">
+        <li><strong>18</strong><span>credentials in total</span></li>
+        <li><strong>1 + 2</strong><span>Honours degree and professional certificates</span></li>
+        <li><strong>15</strong><span>courses from LinkedIn Learning</span></li>
+      </ul>
+
+      <article class="degree" data-sc>
+        <button class="cert__thumb degree__thumb" type="button" data-full="assets/certs/bachelor-business-analytics.jpg" data-pdf=""
+                data-title="Bachelor of Business Analytics, Sunway University" aria-label="View certificate: Bachelor of Business Analytics">
+          <img src="assets/certs/bachelor-business-analytics.jpg" width="1061" height="1500" alt="Bachelor of Business Analytics (Second Class Honours, Division One) certificate from Sunway University" loading="lazy" decoding="async">
+          <span class="cert__zoom" aria-hidden="true">View</span>
+        </button>
+        <div class="degree__body">
+          <span class="cert__no">01</span>
+          <p class="cert__kind">Honours degree · Conferred 8 June 2026</p>
+          <h3>Bachelor of Business Analytics</h3>
+          <p class="degree__class">Second Class Honours (Division One)</p>
+          <p class="cert__issuer">Sunway University · dual-award programme with Lancaster University</p>
+          <p class="degree__text">
+            The foundation for everything else on this page: statistics, machine learning, data transformation and BI,
+            applied from my final year project through to my current role.
+          </p>
+          <ul class="tags"><li>Business analytics</li><li>Statistical analysis</li><li>Machine learning</li><li>Dean's List, Sep 2024</li></ul>
+        </div>
+      </article>
+
+      <h3 class="certs__group reveal">Professional certificates <span>Multi-course programmes</span></h3>
+      <div class="certs certs--2">
+        <article class="cert reveal cert--featured">
+          <button class="cert__thumb" type="button" data-full="assets/certs/microsoft-business-analyst.jpg" data-pdf="assets/certs/microsoft-business-analyst.pdf" data-title="Microsoft Business Analyst" aria-label="View certificate: Microsoft Business Analyst"><img src="assets/certs/microsoft-business-analyst.jpg" width="1200" height="927" alt="Certificate: Microsoft Business Analyst" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">02</span>
+            <p class="cert__kind">Professional Certificate · 24 Sep 2026</p>
+            <h4>Microsoft Business Analyst</h4>
+            <p class="cert__issuer">Microsoft · via Coursera</p>
+            <p class="cert__meta">6 courses</p>
+            <ul class="tags"><li>Requirements gathering</li><li>Process modeling (Visio)</li><li>Power Platform</li><li>Excel for BAs</li><li>Capstone project</li></ul>
+            <div class="cert__links"><a href="assets/certs/microsoft-business-analyst.pdf" target="_blank" rel="noopener">View PDF</a><a href="https://coursera.org/verify/professional-cert/WFA2LLOGW683" target="_blank" rel="noopener">Verify on Coursera</a></div>
+          </div>
+        </article>
+        <article class="cert reveal cert--featured">
+          <button class="cert__thumb" type="button" data-full="assets/certs/google-business-intelligence.jpg" data-pdf="assets/certs/google-business-intelligence.pdf" data-title="Google Business Intelligence" aria-label="View certificate: Google Business Intelligence"><img src="assets/certs/google-business-intelligence.jpg" width="1200" height="927" alt="Certificate: Google Business Intelligence" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">03</span>
+            <p class="cert__kind">Professional Certificate · 28 Sep 2026</p>
+            <h4>Google Business Intelligence</h4>
+            <p class="cert__issuer">Google Career Certificates · via Coursera</p>
+            <p class="cert__meta">4 courses</p>
+            <ul class="tags"><li>Business intelligence</li><li>Data models &amp; pipelines</li><li>Dashboards &amp; reports</li></ul>
+            <div class="cert__links"><a href="assets/certs/google-business-intelligence.pdf" target="_blank" rel="noopener">View PDF</a><a href="https://coursera.org/verify/professional-cert/050INX1BQQM2" target="_blank" rel="noopener">Verify on Coursera</a></div>
+          </div>
+        </article>
+      </div>
+      <h3 class="certs__group reveal">Power BI &amp; data craft <span>The core of my day-to-day stack: DAX, Power Query and Power BI modeling.</span></h3>
+      <div class="certs">
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/powerbi-dax.jpg" data-pdf="assets/certs/powerbi-dax.pdf" data-title="Advanced Power BI: DAX Language, Formulas, and Calculations" aria-label="View certificate: Advanced Power BI: DAX Language, Formulas, and Calculations"><img src="assets/certs/powerbi-dax.jpg" width="1200" height="927" alt="Certificate: Advanced Power BI: DAX Language, Formulas, and Calculations" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">04</span>
+            <p class="cert__kind">Course</p>
+            <h4>Advanced Power BI: DAX Language, Formulas, and Calculations</h4>
+            <p class="cert__issuer">LinkedIn Learning</p>
+            <p class="cert__meta">2h 8m</p>
+            <ul class="tags"><li>Data Analysis</li><li>Data Analytics</li><li>Microsoft Power BI</li></ul>
+            <div class="cert__links"><a href="assets/certs/powerbi-dax.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/power-query.jpg" data-pdf="assets/certs/power-query.pdf" data-title="Advanced Power Query" aria-label="View certificate: Advanced Power Query"><img src="assets/certs/power-query.jpg" width="1200" height="927" alt="Certificate: Advanced Power Query" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">05</span>
+            <p class="cert__kind">Course</p>
+            <h4>Advanced Power Query</h4>
+            <p class="cert__issuer">LinkedIn Learning</p>
+            <p class="cert__meta">3h 57m</p>
+            <ul class="tags"><li>Microsoft Power Query</li></ul>
+            <div class="cert__links"><a href="assets/certs/power-query.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/powerbi-data-methods.jpg" data-pdf="assets/certs/powerbi-data-methods.pdf" data-title="Power BI Data Methods" aria-label="View certificate: Power BI Data Methods"><img src="assets/certs/powerbi-data-methods.jpg" width="1200" height="927" alt="Certificate: Power BI Data Methods" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">06</span>
+            <p class="cert__kind">Course</p>
+            <h4>Power BI Data Methods</h4>
+            <p class="cert__issuer">LinkedIn Learning · PMI® registered provider</p>
+            <p class="cert__meta">3.00 PDUs</p>
+            <ul class="tags"><li>Data Analysis</li><li>Microsoft Power BI</li></ul>
+            <div class="cert__links"><a href="assets/certs/powerbi-data-methods.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/time-series-modeling.jpg" data-pdf="assets/certs/time-series-modeling.pdf" data-title="Time Series Modeling in Excel, R, and Power BI" aria-label="View certificate: Time Series Modeling in Excel, R, and Power BI"><img src="assets/certs/time-series-modeling.jpg" width="1200" height="927" alt="Certificate: Time Series Modeling in Excel, R, and Power BI" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">07</span>
+            <p class="cert__kind">Course</p>
+            <h4>Time Series Modeling in Excel, R, and Power BI</h4>
+            <p class="cert__issuer">LinkedIn Learning</p>
+            <p class="cert__meta">2h</p>
+            <ul class="tags"><li>R</li><li>Time Series Analysis</li><li>Microsoft Power BI</li></ul>
+            <div class="cert__links"><a href="assets/certs/time-series-modeling.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/powerbi-d3-visuals.jpg" data-pdf="assets/certs/powerbi-d3-visuals.pdf" data-title="Advanced Power BI Custom Visuals with d3.js" aria-label="View certificate: Advanced Power BI Custom Visuals with d3.js"><img src="assets/certs/powerbi-d3-visuals.jpg" width="1200" height="927" alt="Certificate: Advanced Power BI Custom Visuals with d3.js" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">08</span>
+            <p class="cert__kind">Course</p>
+            <h4>Advanced Power BI Custom Visuals with d3.js</h4>
+            <p class="cert__issuer">LinkedIn Learning</p>
+            <p class="cert__meta">3h 38m</p>
+            <ul class="tags"><li>D3.js</li><li>Microsoft Power BI</li></ul>
+            <div class="cert__links"><a href="assets/certs/powerbi-d3-visuals.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+      </div>
+      <h3 class="certs__group reveal">Business analysis &amp; analytics <span>The requirements, analysis and strategy side of the Business Analyst role.</span></h3>
+      <div class="certs">
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/excel-for-business-analysts.jpg" data-pdf="assets/certs/excel-for-business-analysts.pdf" data-title="Excel for Business Analysts" aria-label="View certificate: Excel for Business Analysts"><img src="assets/certs/excel-for-business-analysts.jpg" width="1200" height="927" alt="Certificate: Excel for Business Analysts" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">09</span>
+            <p class="cert__kind">Course</p>
+            <h4>Excel for Business Analysts</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">2.50 CDUs</p>
+            <ul class="tags"><li>Business Analysis</li><li>Microsoft Excel</li></ul>
+            <div class="cert__links"><a href="assets/certs/excel-for-business-analysts.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/business-analytics-foundations.jpg" data-pdf="assets/certs/business-analytics-foundations.pdf" data-title="Business Analytics Foundations: Descriptive, Exploratory, and Explanatory Analytics" aria-label="View certificate: Business Analytics Foundations: Descriptive, Exploratory, and Explanatory Analytics"><img src="assets/certs/business-analytics-foundations.jpg" width="1200" height="927" alt="Certificate: Business Analytics Foundations: Descriptive, Exploratory, and Explanatory Analytics" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">10</span>
+            <p class="cert__kind">Course</p>
+            <h4>Business Analytics Foundations: Descriptive, Exploratory, and Explanatory Analytics</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">1.00 CDU</p>
+            <ul class="tags"><li>Business Analytics</li></ul>
+            <div class="cert__links"><a href="assets/certs/business-analytics-foundations.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/agile-business-analysis.jpg" data-pdf="assets/certs/agile-business-analysis.pdf" data-title="Agile Business Analysis" aria-label="View certificate: Agile Business Analysis"><img src="assets/certs/agile-business-analysis.jpg" width="1200" height="927" alt="Certificate: Agile Business Analysis" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">11</span>
+            <p class="cert__kind">Course</p>
+            <h4>Agile Business Analysis</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">2.00 CDUs</p>
+            <ul class="tags"><li>Agile Methodologies</li><li>Business Analysis</li></ul>
+            <div class="cert__links"><a href="assets/certs/agile-business-analysis.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/data-informed-strategic-thinking.jpg" data-pdf="assets/certs/data-informed-strategic-thinking.pdf" data-title="Data-Informed Strategic Thinking for Senior Analysts and Data Scientists" aria-label="View certificate: Data-Informed Strategic Thinking for Senior Analysts and Data Scientists"><img src="assets/certs/data-informed-strategic-thinking.jpg" width="1200" height="927" alt="Certificate: Data-Informed Strategic Thinking for Senior Analysts and Data Scientists" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">12</span>
+            <p class="cert__kind">Course</p>
+            <h4>Data-Informed Strategic Thinking for Senior Analysts and Data Scientists</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">2.75 CDUs</p>
+            <ul class="tags"><li>Data-driven Decision Making</li><li>Strategic Thinking</li></ul>
+            <div class="cert__links"><a href="assets/certs/data-informed-strategic-thinking.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/ai-strategy-foundations.jpg" data-pdf="assets/certs/ai-strategy-foundations.pdf" data-title="AI Strategy Foundations for Data Scientists and Team Leaders" aria-label="View certificate: AI Strategy Foundations for Data Scientists and Team Leaders"><img src="assets/certs/ai-strategy-foundations.jpg" width="1200" height="927" alt="Certificate: AI Strategy Foundations for Data Scientists and Team Leaders" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">13</span>
+            <p class="cert__kind">Course</p>
+            <h4>AI Strategy Foundations for Data Scientists and Team Leaders</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">1.00 CDU</p>
+            <ul class="tags"><li>IT Business Strategy</li><li>AI for Business Analysis</li><li>AI Strategy</li></ul>
+            <div class="cert__links"><a href="assets/certs/ai-strategy-foundations.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+      </div>
+      <h3 class="certs__group reveal">Delivery &amp; process <span>How work gets delivered: Git collaboration, Agile, Scrum and continuous improvement.</span></h3>
+      <div class="certs">
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/github-project-management.jpg" data-pdf="assets/certs/github-project-management.pdf" data-title="Practical GitHub Project Management and Collaboration" aria-label="View certificate: Practical GitHub Project Management and Collaboration"><img src="assets/certs/github-project-management.jpg" width="1200" height="927" alt="Certificate: Practical GitHub Project Management and Collaboration" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">14</span>
+            <p class="cert__kind">Course</p>
+            <h4>Practical GitHub Project Management and Collaboration</h4>
+            <p class="cert__issuer">LinkedIn Learning · PMI® registered provider</p>
+            <p class="cert__meta">1.25 PDUs</p>
+            <ul class="tags"><li>GitHub</li><li>Project Management</li></ul>
+            <div class="cert__links"><a href="assets/certs/github-project-management.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/agile-pm-continuous-improvement.jpg" data-pdf="assets/certs/agile-pm-continuous-improvement.pdf" data-title="Agile Project Management: Continuous Improvement" aria-label="View certificate: Agile Project Management: Continuous Improvement"><img src="assets/certs/agile-pm-continuous-improvement.jpg" width="1200" height="927" alt="Certificate: Agile Project Management: Continuous Improvement" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">15</span>
+            <p class="cert__kind">Course</p>
+            <h4>Agile Project Management: Continuous Improvement</h4>
+            <p class="cert__issuer">LinkedIn Learning · IIBA® endorsed provider</p>
+            <p class="cert__meta">1.00 CDU</p>
+            <ul class="tags"><li>Continuous Improvement</li><li>Agile Project Management</li></ul>
+            <div class="cert__links"><a href="assets/certs/agile-pm-continuous-improvement.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/scrum-advanced.jpg" data-pdf="assets/certs/scrum-advanced.pdf" data-title="Scrum: Advanced" aria-label="View certificate: Scrum: Advanced"><img src="assets/certs/scrum-advanced.jpg" width="1200" height="927" alt="Certificate: Scrum: Advanced" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">16</span>
+            <p class="cert__kind">Course</p>
+            <h4>Scrum: Advanced</h4>
+            <p class="cert__issuer">LinkedIn Learning · PMI® registered provider</p>
+            <p class="cert__meta">1.00 PDU</p>
+            <ul class="tags"><li>Scrum</li></ul>
+            <div class="cert__links"><a href="assets/certs/scrum-advanced.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/lean-six-sigma-foundations.jpg" data-pdf="assets/certs/lean-six-sigma-foundations.pdf" data-title="Lean Six Sigma Foundations" aria-label="View certificate: Lean Six Sigma Foundations"><img src="assets/certs/lean-six-sigma-foundations.jpg" width="1200" height="927" alt="Certificate: Lean Six Sigma Foundations" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">17</span>
+            <p class="cert__kind">Course</p>
+            <h4>Lean Six Sigma Foundations</h4>
+            <p class="cert__issuer">LinkedIn Learning · PMI® registered provider</p>
+            <p class="cert__meta">1.25 PDUs</p>
+            <ul class="tags"><li>Lean Six Sigma</li></ul>
+            <div class="cert__links"><a href="assets/certs/lean-six-sigma-foundations.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+      </div>
+      <h3 class="certs__group reveal">Adjacent skills <span>A commercial angle that rounds out the analytical toolkit.</span></h3>
+      <div class="certs">
+        <article class="cert reveal">
+          <button class="cert__thumb" type="button" data-full="assets/certs/data-driven-prospecting.jpg" data-pdf="assets/certs/data-driven-prospecting.pdf" data-title="Data-Driven Prospecting for Business Development" aria-label="View certificate: Data-Driven Prospecting for Business Development"><img src="assets/certs/data-driven-prospecting.jpg" width="1200" height="927" alt="Certificate: Data-Driven Prospecting for Business Development" loading="lazy" decoding="async"><span class="cert__zoom" aria-hidden="true">View</span></button>
+          <div class="cert__body">
+            <span class="cert__no">18</span>
+            <p class="cert__kind">Course</p>
+            <h4>Data-Driven Prospecting for Business Development</h4>
+            <p class="cert__issuer">LinkedIn Learning · PMI® registered provider</p>
+            <p class="cert__meta">0.50 PDU</p>
+            <ul class="tags"><li>Business Development</li><li>Data-driven Marketing</li></ul>
+            <div class="cert__links"><a href="assets/certs/data-driven-prospecting.pdf" target="_blank" rel="noopener">View PDF</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Certificate viewer">
+      <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Close">&times;</button>
+      <img id="lightboxImg" alt="">
+      <div class="lightbox__bar">
+        <p id="lightboxTitle"></p>
+        <a id="lightboxPdf" href="#" target="_blank" rel="noopener" hidden>Open PDF</a>
+      </div>
+    </dialog>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <h2 class="label reveal"><span class="gold">Contact</span> Info</h2>
+      <p class="contact__lead">Let's connect and work together!</p>
+      <div class="contact__grid">
+      <ul class="contact__list reveal">
+        <li>
+          <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/wongmanchongivan/" target="_blank" rel="noopener">linkedin.com/in/wongmanchongivan</a>
+        </li>
+        <li>
+          <span>Phone (WhatsApp)</span>
+          <a href="https://wa.me/60163467606" target="_blank" rel="noopener">+60 16-346 7606</a>
+        </li>
+        <li>
+          <span>E-mail</span>
+          <a href="mailto:wencong0421@gmail.com">wencong0421@gmail.com</a>
+        </li>
+      </ul>
+
+      <form class="cform reveal" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <p class="cform__hp" aria-hidden="true">
+          <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+        <div class="cform__row">
+          <div>
+            <div class="field">
+              <input id="cfName" name="name" type="text" placeholder=" " autocomplete="name" required aria-describedby="cfNameErr">
+              <label for="cfName">Your name</label>
+            </div>
+            <p class="field__err" id="cfNameErr" aria-live="polite"></p>
+          </div>
+          <div>
+            <div class="field">
+              <input id="cfEmail" name="email" type="email" placeholder=" " autocomplete="email" required aria-describedby="cfEmailErr">
+              <label for="cfEmail">Email</label>
+            </div>
+            <p class="field__err" id="cfEmailErr" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="field">
+          <textarea id="cfMessage" name="message" placeholder=" " rows="5" required aria-describedby="cfMessageErr"></textarea>
+          <label for="cfMessage">Message</label>
+        </div>
+        <p class="field__err" id="cfMessageErr" aria-live="polite"></p>
+        <div class="cform__actions">
+          <button class="btn btn--gold cform__submit" type="submit"><span class="cform__label">Send message</span></button>
+          <p class="cform__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="year">2026</span> Wong Man Chong Ivan · Johor Bahru, Malaysia</p>
+    <div class="fx-toggle" id="fxToggle" role="group" aria-label="Background motion" hidden>
+      <span class="fx-toggle__label" aria-hidden="true">Background</span>
+      <button type="button" data-mode="scatter" aria-pressed="false">Scatter</button>
+      <button type="button" data-mode="swarm" aria-pressed="false">Swarm</button>
+      <button type="button" data-mode="off" aria-pressed="false">Off</button>
+    </div>
+  </footer>
+
+  <!-- Recruiter assistant (built by js/chat/chat-ui.js) -->
+  <div class="chat" id="chat"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
