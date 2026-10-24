@@ -1,6 +1,6 @@
 import { gsap, ScrollTrigger } from "../vendor/gsap.min.js";
-import { SECTIONS, STORAGE_KEYS } from "./config.js";
-import { navHeight, storage } from "./utils.js";
+import { SECTIONS } from "./config.js";
+import { navHeight } from "./utils.js";
 
 // Page chrome: mobile menu, smooth anchor scrolling, active nav link, certificate lightbox,
 // footer year and the background-particle mode switch.
@@ -77,13 +77,22 @@ function initLightbox() {
   const box = document.getElementById("lightbox");
   if (!box || typeof box.showModal !== "function") return;
   const img = document.getElementById("lightboxImg");
+  const img2 = document.getElementById("lightboxImg2");
   const title = document.getElementById("lightboxTitle");
   const pdf = document.getElementById("lightboxPdf");
   document.querySelectorAll(".cert__thumb").forEach((button) => {
     button.addEventListener("click", () => {
       img.src = button.dataset.full;
       img.alt = `Certificate: ${button.dataset.title}`;
-      title.textContent = button.dataset.title;
+      // A button with data-full2 opens a pair, e.g. both certificates of a dual-award degree.
+      const pair = Boolean(button.dataset.full2);
+      box.classList.toggle("lightbox--pair", pair);
+      img2.hidden = !pair;
+      if (pair) {
+        img2.src = button.dataset.full2;
+        img2.alt = `Certificate: ${button.dataset.title2}`;
+      }
+      title.textContent = pair ? `${button.dataset.title} · ${button.dataset.title2}` : button.dataset.title;
       if (button.dataset.pdf) {
         pdf.href = button.dataset.pdf;
         pdf.hidden = false;
@@ -91,7 +100,7 @@ function initLightbox() {
         pdf.hidden = true;
       }
       box.showModal();
-      gsap.fromTo(img, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "expoOut" });
+      gsap.fromTo(pair ? [img, img2] : img, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "expoOut", stagger: 0.08 });
     });
   });
   document.getElementById("lightboxClose").addEventListener("click", () => box.close());
@@ -100,35 +109,11 @@ function initLightbox() {
   });
 }
 
-// Lets visitors choose how the background reacts, or switch it off entirely.
-function initFxToggle(field) {
-  const group = document.getElementById("fxToggle");
-  if (!group) return;
-  if (!field) {
-    group.hidden = true;
-    return;
-  }
-  const buttons = Array.from(group.querySelectorAll("button[data-mode]"));
-  const apply = (mode) => {
-    field.setMode(mode);
-    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
-  };
-  buttons.forEach((b) =>
-    b.addEventListener("click", () => {
-      apply(b.dataset.mode);
-      storage.set(STORAGE_KEYS.fxMode, b.dataset.mode);
-    })
-  );
-  apply(field.getMode());
-  group.hidden = false;
-}
-
-export function initUI({ scrollToSection, field }) {
+export function initUI({ scrollToSection }) {
   const closeMenu = initMenu();
   initAnchors(scrollToSection, closeMenu);
   initActiveNav();
   initLightbox();
-  initFxToggle(field);
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 }

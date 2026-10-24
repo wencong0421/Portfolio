@@ -256,27 +256,3 @@ html[data-theme="v2"] .progress-top { box-shadow: none; }
 .v-arc--3 { stroke: var(--viz-dim); }
 .v-arc--new { stroke: var(--accent-2); }
 
-/* -------------------------------------------------------------------------------------
-   Footer motion control (replaces the floating particle box)
-   ------------------------------------------------------------------------------------- */
-.footer { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: center; }
-.fx-ready .footer { padding-bottom: 24px; }
-.fx-toggle {
-  position: static;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 3px;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-.fx-toggle__label { font-size: 11px; letter-spacing: 0.04em; text-transform: none; padding: 0 6px 0 10px; }
-.fx-toggle button { font-size: 12px; font-weight: 600; padding: 5px 11px; }
-.fx-toggle button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
-
-@media (max-width: 560px) {
-  .fx-toggle__label { display: inline; }
-}

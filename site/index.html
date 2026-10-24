@@ -470,9 +470,12 @@
       </ul>
 
       <article class="degree" data-sc>
-        <button class="cert__thumb degree__thumb" type="button" data-full="assets/certs/bachelor-business-analytics.jpg" data-pdf=""
-                data-title="Bachelor of Business Analytics, Sunway University" aria-label="View certificate: Bachelor of Business Analytics">
-          <img src="assets/certs/bachelor-business-analytics.jpg" width="1061" height="1500" alt="Bachelor of Business Analytics (Second Class Honours, Division One) certificate from Sunway University" loading="lazy" decoding="async">
+        <button class="cert__thumb degree__thumb degree__pair" type="button"
+                data-full="assets/certs/bachelor-business-analytics.jpg" data-title="Bachelor of Business Analytics, Sunway University"
+                data-full2="assets/certs/lancaster-bsc-business-analytics.jpg" data-title2="Bachelor of Science in Business Analytics, Lancaster University"
+                aria-label="View degree certificates from Sunway University and Lancaster University">
+          <img class="degree__cert degree__cert--back" src="assets/certs/bachelor-business-analytics.jpg" width="1061" height="1500" alt="Bachelor of Business Analytics (Second Class Honours, Division One) certificate from Sunway University" loading="lazy" decoding="async">
+          <img class="degree__cert degree__cert--front" src="assets/certs/lancaster-bsc-business-analytics.jpg" width="1061" height="1500" alt="Bachelor of Science in Business Analytics (Second Class Honours, Division One) certificate from Lancaster University" loading="lazy" decoding="async">
           <span class="cert__zoom" aria-hidden="true">View</span>
         </button>
         <div class="degree__body">
@@ -480,13 +483,14 @@
           <p class="cert__kind">Honours degree · Conferred 8 June 2026</p>
           <h3>Bachelor of Business Analytics</h3>
           <p class="degree__class">Second Class Honours (Division One)</p>
-          <p class="cert__issuer">Sunway University · Dual-award programme with Lancaster University</p>
+          <p class="cert__issuer">Dual award: Sunway University and Lancaster University (BSc Business Analytics)</p>
           <p class="degree__text">
             The foundation for everything else on this page: statistics, machine learning, data transformation and BI,
             applied from my final year project through to my current role.
           </p>
           <ul class="tags"><li>Business analytics</li><li>Statistical analysis</li><li>Machine learning</li><li>Dean's List, Sep 2024</li></ul>
         </div>
+        <img class="degree__tubes" src="assets/degree-tubes.webp" width="900" height="408" alt="" aria-hidden="true" loading="lazy" decoding="async">
       </article>
 
       <h3 class="certs__group reveal">Professional certificates <span>Multi-course programmes</span></h3>
@@ -712,7 +716,10 @@
 
     <dialog class="lightbox" id="lightbox" aria-label="Certificate viewer">
       <button class="lightbox__close" type="button" id="lightboxClose" aria-label="Close">&times;</button>
-      <img id="lightboxImg" alt="">
+      <div class="lightbox__imgs">
+        <img id="lightboxImg" alt="">
+        <img id="lightboxImg2" alt="" hidden>
+      </div>
       <div class="lightbox__bar">
         <p id="lightboxTitle"></p>
         <a id="lightboxPdf" href="#" target="_blank" rel="noopener" hidden>Open PDF</a>
@@ -776,12 +783,6 @@
 
   <footer class="footer">
     <p>&copy; <span id="year">2026</span> Wong Man Chong Ivan · Johor Bahru, Malaysia</p>
-    <div class="fx-toggle" id="fxToggle" role="group" aria-label="Background motion" hidden>
-      <span class="fx-toggle__label" aria-hidden="true">Background</span>
-      <button type="button" data-mode="scatter" aria-pressed="false">Scatter</button>
-      <button type="button" data-mode="swarm" aria-pressed="false">Swarm</button>
-      <button type="button" data-mode="off" aria-pressed="false">Off</button>
-    </div>
   </footer>
 
   <!-- Recruiter assistant (built by js/chat/chat-ui.js) -->

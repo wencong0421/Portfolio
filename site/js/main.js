@@ -2,7 +2,7 @@
 // Each system starts independently, so a failure in one never blocks the others or hides content.
 
 import { gsap, ScrollTrigger, ScrollToPlugin, CustomEase, SplitText } from "../vendor/gsap.min.js";
-import { PARTICLES, STORAGE_KEYS, THEME_OVERRIDES, activeTheme } from "./config.js";
+import { PARTICLES, THEME_OVERRIDES, activeTheme } from "./config.js";
 import { registerEases } from "./easing.js";
 import { bindSpringTicker } from "./spring.js";
 import { createParticleField } from "./particles.js";
@@ -14,7 +14,7 @@ import { initShowcase } from "./showcase.js";
 import { createScroller, initUI } from "./ui.js";
 import { initProjectViz } from "./project-viz.js";
 import { initChat } from "./chat/chat-ui.js";
-import { prefersReducedMotion, storage } from "./utils.js";
+import { prefersReducedMotion } from "./utils.js";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, CustomEase, SplitText);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -36,14 +36,13 @@ function safely(name, fn) {
 const theme = THEME_OVERRIDES[activeTheme()];
 const particleSettings = { ...PARTICLES, ...(theme.particles || {}) };
 
-const savedMode = storage.get(STORAGE_KEYS.fxMode);
 const created = safely("particles", () =>
   createParticleField({
     canvas: document.getElementById("bgCanvas"),
     ticker: gsap.ticker,
     settings: particleSettings,
     reducedMotion,
-    initialMode: ["scatter", "swarm", "off"].includes(savedMode) ? savedMode : PARTICLES.defaultMode,
+    initialMode: PARTICLES.defaultMode,
   })
 );
 const field = created && created !== true ? created : null;
@@ -59,7 +58,7 @@ safely("bursts", () =>
     compositeMode: theme.burst?.composite,
   })
 );
-safely("ui", () => initUI({ scrollToSection, field }));
+safely("ui", () => initUI({ scrollToSection }));
 safely("contact form", () => initContactForm());
 if (safely("showcase", () => initShowcase({ EASE })) === null) {
   // Without the showcase nothing would reveal the hidden content, so show everything as-is.

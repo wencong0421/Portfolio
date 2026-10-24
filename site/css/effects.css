@@ -60,45 +60,6 @@ html.js { scroll-behavior: auto; }
   pointer-events: none;
 }
 
-/* Particle mode switch */
-.fx-toggle {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 45;
-  display: flex;
-  gap: 2px;
-  padding: 4px;
-  border-radius: 999px;
-  background: rgb(var(--bg-rgb) / 0.78);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.fx-toggle[hidden] { display: none; }
-/* Keep the footer text clear of the floating switch. */
-.fx-ready .footer { padding-bottom: 76px; }
-.fx-toggle__label {
-  align-self: center;
-  padding: 0 8px 0 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.fx-toggle button {
-  font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text);
-  background: none;
-  border: 0;
-  border-radius: 999px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-.fx-toggle button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
 
 /* -------------------------------------------------------------------------------------
    2. Scroll showcase
@@ -425,7 +386,6 @@ html.js { scroll-behavior: auto; }
 }
 @media (max-width: 560px) {
   .cform__row { grid-template-columns: 1fr; }
-  .fx-toggle__label { display: none; }
 }
 
 /* -------------------------------------------------------------------------------------

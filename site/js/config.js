@@ -70,7 +70,7 @@ export const MICRO_PRESETS = {
 export const INTERACTIVE = [
   { selector: ".btn", preset: "button", ring: true, glow: true },
   { selector: ".icon-btn, .nav__brand", preset: "icon", ring: true },
-  { selector: ".nav__links a, .cert__links a, .contact__list a, .fx-toggle button, .chat-launcher", preset: "link" },
+  { selector: ".nav__links a, .cert__links a, .contact__list a, .chat-launcher", preset: "link" },
   {
     selector: ".card, .project, .cert, .skill, .stats li, .contact__list li, .degree",
     preset: "card",
@@ -105,6 +105,3 @@ export function activeTheme() {
   return document.documentElement.dataset.theme === "v2" ? "v2" : "v1";
 }
 
-export const STORAGE_KEYS = {
-  fxMode: "portfolio:fx-mode",
-};

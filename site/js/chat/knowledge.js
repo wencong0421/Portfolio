@@ -387,7 +387,7 @@ export const PROFILE = {
   },
 
   certifications: [
-    { rank: 1, title: "Bachelor of Business Analytics, Second Class Honours (Division One)", issuer: "Sunway University", kind: "Honours degree", date: "8 June 2026", skills: ["Business analytics", "Statistics", "Machine learning"] },
+    { rank: 1, title: "Bachelor of Business Analytics, Second Class Honours (Division One)", issuer: "Sunway University (dual award with Lancaster University, BSc Business Analytics)", kind: "Honours degree", date: "8 June 2026", skills: ["Business analytics", "Statistics", "Machine learning"] },
     { rank: 2, title: "Microsoft Business Analyst", issuer: "Microsoft (via Coursera)", kind: "Professional Certificate", date: "24 Sep 2026", skills: ["Requirements gathering", "Process modeling (Visio)", "Power Platform", "Excel for BAs"], verify: "https://coursera.org/verify/professional-cert/WFA2LLOGW683", note: "A six-course Microsoft professional certificate delivered on Coursera. It is not a Microsoft certification exam such as PL-300." },
     { rank: 3, title: "Google Business Intelligence", issuer: "Google Career Certificates (via Coursera)", kind: "Professional Certificate", date: "28 Sep 2026", skills: ["Business intelligence", "Data models & pipelines", "Dashboards & reports"], verify: "https://coursera.org/verify/professional-cert/050INX1BQQM2" },
     { rank: 4, title: "Advanced Power BI: DAX Language, Formulas, and Calculations", issuer: "LinkedIn Learning", kind: "Course", date: null, skills: ["DAX", "Power BI"] },
